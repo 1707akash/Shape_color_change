@@ -1,40 +1,42 @@
-var color = [
-    "red",
-    "green",
-    "cyan",
-    "black",
-    "voilet",
-    "blue",
-    "yellow",
-    "purple",
-    "orange",
-    "lightgreen",
-    "lemon",
-];
-var index = 0;
-var isTriangle = false;
 
-var cShape = document.getElementById("change-shape");
-var cColor = document.getElementById("change-color");
+let colorDiv = document.getElementById("colorDiv");
+let shapeDiv = document.getElementById("shapeDiv");
 
-cShape.addEventListener("click", changeShape);
-cColor.addEventListener("click", changeColor);
+let colorBtn = document.getElementById("colorBtn");
+let shapeBtn = document.getElementById("shapeBtn");
+console.log(shapeDiv);
+
+// For color change
+
+colorBtn.addEventListener("click",changeColor);
 
 function changeColor(){
-    if(index === color.length){
-        index = 0;
+    let str= "0123456789abcdef";
+    let hexCode= "#";
+    for(let i=0; i<6; i++){
+        let randomIndex = Math.floor(Math.random()*str.length);
+        hexCode+= str[randomIndex];
     }
-    document.getElementById("circle").style.backgroundColor = color[index];
-    index++;
+    // console.log(hexCode);
+    colorDiv.style.backgroundColor= hexCode;
 }
-function changeShape(){
-    if(!isTriangle){
-        var i = document.getElementsByClassName("inner")[0];
-        i.className = "triangle-bottom-left";
-        isTriangle = true;
-    }else{
-        var i = document.getElementsByClassName("triangle-bottom-left")[0];
-        i.className = "inner";
-        isTriangle = false;
+
+
+
+// For SHape change 
+
+
+let shapeArr = ["circle","triangle","rhombus","hexagon","pentagon","parallelogram"];
+
+let j=0;
+shapeBtn.addEventListener("click",function(){
+    
+    // console.log(shapeArr[j]);
+    shapeDiv.id = shapeArr[j];
+    j++;
+    if(j>=shapeArr.length-1){
+        j=0;
     }
-}
+});
+
+
